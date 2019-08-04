@@ -1,0 +1,17 @@
+<form [formGroup]="searchForm" (ngSubmit)="onSubmit(searchForm.value)">
+  <input id="priceFrom" type="text" formControlName="priceFrom" placeholder="Cena od">
+  <input id="priceTo" type="text" formControlName="priceTo" placeholder="Cena do">
+  <ng-multiselect-dropdown [placeholder]="'Marka'" [data]="brandDropdownData" formControlName="brands" [settings]="dropdownSettings"></ng-multiselect-dropdown>
+  <ng-multiselect-dropdown [placeholder]="'Segment'" [data]="segmentDropdownData" formControlName="segments" [settings]="dropdownSettings"></ng-multiselect-dropdown>
+  <ng-multiselect-dropdown [placeholder]="'Nadwozie'" [data]="carbodyDropdownData" formControlName="carbodies" [settings]="dropdownSettings"></ng-multiselect-dropdown>
+  <ng-multiselect-dropdown [placeholder]="'Paliwo'" [data]="fuelDropdownData" formControlName="fuels" [settings]="dropdownSettings"></ng-multiselect-dropdown>
+  <input id="powerFrom" type="text" formControlName="powerFrom" placeholder="Moc od">
+  <input id="powerTo" type="text" formControlName="powerTo" placeholder="Moc do">
+  <input id="engineCapacityFrom" type="text" formControlName="engineCapacityFrom" placeholder="Pojemność od">
+  <input id="engineCapacityTo" type="text" formControlName="engineCapacityTo" placeholder="Pojemność do">
+  
+  <button class="searchButton" type="submit">Szukaj</button>
+</form>
+
+<pre>{{searchCriteriaInJson | json}}</pre>
+
