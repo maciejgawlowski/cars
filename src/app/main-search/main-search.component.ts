@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormControl} from '@angular/forms';
+import {Observable} from 'rxjs';
+import {map, startWith} from 'rxjs/operators';
 
 @Component({
   selector: 'app-main-search',
@@ -11,38 +13,38 @@ export class MainSearchComponent implements OnInit {
   searchCriteriaInJson;
 
   brandDropdownData = [
-    { item_id: 1, item_text: 'Audi' },
-    { item_id: 2, item_text: 'Citroen' },
-    { item_id: 3, item_text: 'Dacia' },
-    { item_id: 4, item_text: 'Fiat' },
-    { item_id: 5, item_text: 'Ford' },
-    { item_id: 6, item_text: 'Mazda' },
-    { item_id: 7, item_text: 'Opel' },
-    { item_id: 8, item_text: 'Skoda' }
+    {item_id: 1, item_text: 'Audi'},
+    {item_id: 2, item_text: 'Citroen'},
+    {item_id: 3, item_text: 'Dacia'},
+    {item_id: 4, item_text: 'Fiat'},
+    {item_id: 5, item_text: 'Ford'},
+    {item_id: 6, item_text: 'Mazda'},
+    {item_id: 7, item_text: 'Opel'},
+    {item_id: 8, item_text: 'Skoda'}
   ];
 
   segmentDropdownData = [
-    { item_id: 1, item_text: 'A - Samochody miejskie' },
-    { item_id: 2, item_text: 'B - Samochody małe' },
-    { item_id: 3, item_text: 'C - Samochody kompaktowe' },
-    { item_id: 4, item_text: 'D - Klasa średnia' },
-    { item_id: 5, item_text: 'E - Klasa wyższa-średnia' },
-    { item_id: 6, item_text: 'F - Klasa wyższa' },
+    {item_id: 1, item_text: 'A - Samochody miejskie'},
+    {item_id: 2, item_text: 'B - Samochody małe'},
+    {item_id: 3, item_text: 'C - Samochody kompaktowe'},
+    {item_id: 4, item_text: 'D - Klasa średnia'},
+    {item_id: 5, item_text: 'E - Klasa wyższa-średnia'},
+    {item_id: 6, item_text: 'F - Klasa wyższa'},
   ];
 
   carbodyDropdownData = [
-    { item_id: 1, item_text: 'Hatchback' },
-    { item_id: 2, item_text: 'Sedan' },
-    { item_id: 3, item_text: 'Kombi' },
-    { item_id: 4, item_text: 'SUV' },
+    {item_id: 1, item_text: 'Hatchback'},
+    {item_id: 2, item_text: 'Sedan'},
+    {item_id: 3, item_text: 'Kombi'},
+    {item_id: 4, item_text: 'SUV'},
   ];
 
   fuelDropdownData = [
-    { item_id: 1, item_text: 'Benzyna' },
-    { item_id: 2, item_text: 'Diesel' },
-    { item_id: 3, item_text: 'Benzyna + LPG' },
-    { item_id: 4, item_text: 'Hybryda' },
-    { item_id: 5, item_text: 'Elektryczny' },
+    {item_id: 1, item_text: 'Benzyna'},
+    {item_id: 2, item_text: 'Diesel'},
+    {item_id: 3, item_text: 'Benzyna + LPG'},
+    {item_id: 4, item_text: 'Hybryda'},
+    {item_id: 5, item_text: 'Elektryczny'},
   ];
 
   dropdownSettings = {
@@ -52,6 +54,10 @@ export class MainSearchComponent implements OnInit {
     textField: 'item_text',
     itemsShowLimit: 3,
   };
+
+  myControl = new FormControl();
+  options: string[] = ['One', 'Two', 'Three'];
+  filteredOptions: Observable<string[]>;
 
   constructor(private formBuilder: FormBuilder) {
     this.searchForm = this.formBuilder.group({
@@ -65,14 +71,26 @@ export class MainSearchComponent implements OnInit {
       powerTo: '',
       engineCapacityFrom: '',
       engineCapacityTo: '',
-    })
+    });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.filteredOptions = this.myControl.valueChanges
+      .pipe(
+        startWith(''),
+        map(value => this._filter(value))
+      );
+  }
 
   onSubmit(searchCriteria) {
     console.log('Searching', searchCriteria);
-    this.searchCriteriaInJson=searchCriteria;
+    this.searchCriteriaInJson = searchCriteria;
+  }
+
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.options.filter(option => option.toLowerCase().includes(filterValue));
   }
 
 }
