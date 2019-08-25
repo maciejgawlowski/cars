@@ -2,7 +2,7 @@
   <form [formGroup]="searchForm" (ngSubmit)="onSubmit(searchForm.value)">
     <div class="form-row">
       <mat-form-field class="form-item">
-        <input type="text" maxlength="7" formControlName="priceFrom" placeholder="Cena od" aria-label="Cena od" matInput [matAutocomplete]="auto">
+        <input type="text" maxlength="7" formControlName="priceFrom" placeholder="Cena od" matInput [matAutocomplete]="auto">
         <mat-autocomplete #auto="matAutocomplete">
           <mat-option *ngFor="let price of priceOptions" [value]="price">
             {{price}} zł
@@ -12,7 +12,7 @@
       </mat-form-field>
 
       <mat-form-field class="form-item">
-        <input type="text" maxlength="7" formControlName="priceTo" placeholder="Cena do" aria-label="Cena do" matInput [matAutocomplete]="auto">
+        <input type="text" maxlength="7" formControlName="priceTo" placeholder="Cena do" matInput [matAutocomplete]="auto">
         <mat-autocomplete #auto="matAutocomplete">
           <mat-option *ngFor="let price of priceOptions" [value]="price">
             {{price}} zł
@@ -22,31 +22,81 @@
       </mat-form-field>
     </div>
 
-
-
-
-
-
-
-
-
-
-
     <div class="form-row">
-<!--      <ng-multiselect-dropdown class="form-item" [placeholder]="'Segment'" [data]="segmentDropdownData" formControlName="segments" [settings]="dropdownSettings"></ng-multiselect-dropdown>-->
-<!--      <ng-multiselect-dropdown class="form-item" [placeholder]="'Marka'" [data]="brandDropdownData" formControlName="brands" [settings]="dropdownSettings"></ng-multiselect-dropdown>-->
-<!--      <ng-multiselect-dropdown class="form-item" [placeholder]="'Nadwozie'" [data]="carbodyDropdownData" formControlName="carbodies" [settings]="dropdownSettings"></ng-multiselect-dropdown>-->
-<!--      <ng-multiselect-dropdown class="form-item" [placeholder]="'Paliwo'" [data]="fuelDropdownData" formControlName="fuels" [settings]="dropdownSettings"></ng-multiselect-dropdown>-->
+      <mat-form-field>
+        <mat-label>Segment</mat-label>
+        <mat-select multiple formControlName="segments">
+          <mat-option *ngFor="let segment of segmentOptions" [value]="segment">{{segment}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Marka</mat-label>
+        <mat-select multiple formControlName="brands">
+          <mat-option *ngFor="let brand of brandOptions" [value]="brand">{{brand}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Nadwozie</mat-label>
+        <mat-select multiple formControlName="carbodies">
+          <mat-option *ngFor="let carbody of carbodyOptions" [value]="carbody">{{carbody}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Paliwo</mat-label>
+        <mat-select multiple formControlName="fuels">
+          <mat-option *ngFor="let fuel of fuelOptions" [value]="fuel">{{fuel}}</mat-option>
+        </mat-select>
+      </mat-form-field>
     </div>
+
     <div class="form-row">
-      <input id="powerFrom" class="form-item" type="text" formControlName="powerFrom" placeholder="Moc od">
-      <input id="powerTo" class="form-item" type="text" formControlName="powerTo" placeholder="Moc do">
-      <input id="engineCapacityFrom" class="form-item" type="text" formControlName="engineCapacityFrom" placeholder="Pojemność od">
-      <input id="engineCapacityTo" class="form-item" type="text" formControlName="engineCapacityTo" placeholder="Pojemność do">
+      <mat-form-field class="form-item">
+        <input type="text" maxlength="3" formControlName="powerFrom" placeholder="Moc od" matInput [matAutocomplete]="auto">
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option *ngFor="let power of powerOptions" [value]="power">
+            {{power}} KM
+          </mat-option>
+        </mat-autocomplete>
+        <span matSuffix> KM </span>
+      </mat-form-field>
+
+      <mat-form-field class="form-item">
+        <input type="text" maxlength="3" formControlName="powerTo" placeholder="Moc do" matInput [matAutocomplete]="auto">
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option *ngFor="let power of powerOptions" [value]="power">
+            {{power}} KM
+          </mat-option>
+        </mat-autocomplete>
+        <span matSuffix> KM </span>
+      </mat-form-field>
+
+      <mat-form-field class="form-item">
+        <input type="text" maxlength="3" formControlName="engineCapacityFrom" placeholder="Pojemność od" matInput [matAutocomplete]="auto">
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option *ngFor="let capacity of engineCapacityOptions" [value]="capacity">
+            {{capacity}} cm3
+          </mat-option>
+        </mat-autocomplete>
+        <span matSuffix> cm3 </span>
+      </mat-form-field>
+
+      <mat-form-field class="form-item">
+        <input type="text" maxlength="3" formControlName="engineCapacityTo" placeholder="Pojemność do" matInput [matAutocomplete]="auto">
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option *ngFor="let capacity of engineCapacityOptions" [value]="capacity">
+            {{capacity}} cm3
+          </mat-option>
+        </mat-autocomplete>
+        <span matSuffix> cm3 </span>
+      </mat-form-field>
     </div>
+
     <div class="form-row">
-      <button class="searchButton" class="form-item" type="submit">
-        <i class="fa fa-search"></i> SZUKAJ
+      <button mat-raised-button class="form-item" type="submit">
+        <i class="material-icons">search</i> SZUKAJ
       </button>
     </div>
   </form>
