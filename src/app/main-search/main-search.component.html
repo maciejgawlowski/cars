@@ -1,8 +1,25 @@
 <div id="main-search">
   <form [formGroup]="searchForm" (ngSubmit)="onSubmit(searchForm.value)">
     <div class="form-row">
-      <input id="priceFrom" class="form-item" type="text" formControlName="priceFrom" placeholder="Cena od">
-      <input id="priceTo" class="form-item" type="text" formControlName="priceTo" placeholder="Cena do">
+      <mat-form-field class="form-item">
+        <input type="text" maxlength="7" formControlName="priceFrom" placeholder="Cena od" aria-label="Cena od" matInput [matAutocomplete]="auto">
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option *ngFor="let price of priceOptions" [value]="price">
+            {{price}} zł
+          </mat-option>
+        </mat-autocomplete>
+        <span matSuffix> zł </span>
+      </mat-form-field>
+
+      <mat-form-field class="form-item">
+        <input type="text" maxlength="7" formControlName="priceTo" placeholder="Cena do" aria-label="Cena do" matInput [matAutocomplete]="auto">
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option *ngFor="let price of priceOptions" [value]="price">
+            {{price}} zł
+          </mat-option>
+        </mat-autocomplete>
+        <span matSuffix> zł </span>
+      </mat-form-field>
     </div>
 
 
@@ -16,10 +33,10 @@
 
 
     <div class="form-row">
-      <ng-multiselect-dropdown class="form-item" [placeholder]="'Segment'" [data]="segmentDropdownData" formControlName="segments" [settings]="dropdownSettings"></ng-multiselect-dropdown>
-      <ng-multiselect-dropdown class="form-item" [placeholder]="'Marka'" [data]="brandDropdownData" formControlName="brands" [settings]="dropdownSettings"></ng-multiselect-dropdown>
-      <ng-multiselect-dropdown class="form-item" [placeholder]="'Nadwozie'" [data]="carbodyDropdownData" formControlName="carbodies" [settings]="dropdownSettings"></ng-multiselect-dropdown>
-      <ng-multiselect-dropdown class="form-item" [placeholder]="'Paliwo'" [data]="fuelDropdownData" formControlName="fuels" [settings]="dropdownSettings"></ng-multiselect-dropdown>
+<!--      <ng-multiselect-dropdown class="form-item" [placeholder]="'Segment'" [data]="segmentDropdownData" formControlName="segments" [settings]="dropdownSettings"></ng-multiselect-dropdown>-->
+<!--      <ng-multiselect-dropdown class="form-item" [placeholder]="'Marka'" [data]="brandDropdownData" formControlName="brands" [settings]="dropdownSettings"></ng-multiselect-dropdown>-->
+<!--      <ng-multiselect-dropdown class="form-item" [placeholder]="'Nadwozie'" [data]="carbodyDropdownData" formControlName="carbodies" [settings]="dropdownSettings"></ng-multiselect-dropdown>-->
+<!--      <ng-multiselect-dropdown class="form-item" [placeholder]="'Paliwo'" [data]="fuelDropdownData" formControlName="fuels" [settings]="dropdownSettings"></ng-multiselect-dropdown>-->
     </div>
     <div class="form-row">
       <input id="powerFrom" class="form-item" type="text" formControlName="powerFrom" placeholder="Moc od">

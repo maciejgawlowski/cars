@@ -11,6 +11,7 @@ import {map, startWith} from 'rxjs/operators';
 export class MainSearchComponent implements OnInit {
   searchForm;
   searchCriteriaInJson;
+  priceOptions: string[] = ['40 000', '50 000', '60 000', '70 000', '80 000', '100 000', '120 000', '140 000', '160 000'];
 
   brandDropdownData = [
     {item_id: 1, item_text: 'Audi'},
@@ -55,9 +56,7 @@ export class MainSearchComponent implements OnInit {
     itemsShowLimit: 3,
   };
 
-  myControl = new FormControl();
-  options: string[] = ['One', 'Two', 'Three'];
-  filteredOptions: Observable<string[]>;
+
 
   constructor(private formBuilder: FormBuilder) {
     this.searchForm = this.formBuilder.group({
@@ -75,22 +74,11 @@ export class MainSearchComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.filteredOptions = this.myControl.valueChanges
-      .pipe(
-        startWith(''),
-        map(value => this._filter(value))
-      );
   }
 
   onSubmit(searchCriteria) {
     console.log('Searching', searchCriteria);
     this.searchCriteriaInJson = searchCriteria;
-  }
-
-  private _filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
-
-    return this.options.filter(option => option.toLowerCase().includes(filterValue));
   }
 
 }
