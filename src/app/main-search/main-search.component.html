@@ -23,28 +23,28 @@
     </div>
 
     <div class="form-row">
-      <mat-form-field>
+      <mat-form-field class="form-item">
         <mat-label>Segment</mat-label>
         <mat-select multiple formControlName="segments">
           <mat-option *ngFor="let segment of segmentOptions" [value]="segment">{{segment}}</mat-option>
         </mat-select>
       </mat-form-field>
 
-      <mat-form-field>
+      <mat-form-field class="form-item">
         <mat-label>Marka</mat-label>
         <mat-select multiple formControlName="brands">
           <mat-option *ngFor="let brand of brandOptions" [value]="brand">{{brand}}</mat-option>
         </mat-select>
       </mat-form-field>
 
-      <mat-form-field>
+      <mat-form-field class="form-item">
         <mat-label>Nadwozie</mat-label>
         <mat-select multiple formControlName="carbodies">
           <mat-option *ngFor="let carbody of carbodyOptions" [value]="carbody">{{carbody}}</mat-option>
         </mat-select>
       </mat-form-field>
 
-      <mat-form-field>
+      <mat-form-field class="form-item">
         <mat-label>Paliwo</mat-label>
         <mat-select multiple formControlName="fuels">
           <mat-option *ngFor="let fuel of fuelOptions" [value]="fuel">{{fuel}}</mat-option>
@@ -74,7 +74,7 @@
       </mat-form-field>
 
       <mat-form-field class="form-item">
-        <input type="text" maxlength="3" formControlName="engineCapacityFrom" placeholder="Pojemność od" matInput [matAutocomplete]="auto">
+        <input type="text" maxlength="5" formControlName="engineCapacityFrom" placeholder="Pojemność od" matInput [matAutocomplete]="auto">
         <mat-autocomplete #auto="matAutocomplete">
           <mat-option *ngFor="let capacity of engineCapacityOptions" [value]="capacity">
             {{capacity}} cm3
@@ -84,7 +84,7 @@
       </mat-form-field>
 
       <mat-form-field class="form-item">
-        <input type="text" maxlength="3" formControlName="engineCapacityTo" placeholder="Pojemność do" matInput [matAutocomplete]="auto">
+        <input type="text" maxlength="5" formControlName="engineCapacityTo" placeholder="Pojemność do" matInput [matAutocomplete]="auto">
         <mat-autocomplete #auto="matAutocomplete">
           <mat-option *ngFor="let capacity of engineCapacityOptions" [value]="capacity">
             {{capacity}} cm3
