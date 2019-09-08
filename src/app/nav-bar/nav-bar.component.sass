@@ -1,12 +1,30 @@
-//:host
-//    width: 100%
-//    background-color: black
-//    display: flex
-//    flex-direction: row
-//    h1
-//        color: white
-//        font-size: 16px
-//        padding: 10px
-//        margin-left: 10px
-//    h1:hover
-//         color: lightgray
+.navbar
+  list-style: none
+  display: -webkit-box
+  display: -moz-box
+  display: -ms-flexbox
+  display: -webkit-flex
+  display: flex
+
+  -webkit-flex-flow: row wrap
+  justify-content: flex-end
+
+.navbar a
+  text-decoration: none
+  display: block
+  padding: 1em
+  font-family: 'Lato', sans-serif
+  color: #c1c4bb
+
+.navbar a:hover
+  color: #91948b
+
+@media all and (max-width: 600px)
+  .navbar
+    -webkit-flex-flow: column wrap
+    flex-flow: column wrap
+    padding: 0
+
+  .navbar a
+    text-align: center
+    padding: 10px
