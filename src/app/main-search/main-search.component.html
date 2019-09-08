@@ -1,3 +1,11 @@
+<div id="main-page-logo">
+  <img id="big-logo" src="assets/img/logo.png" alt="Logo">
+</div>
+
+<div id="main-page-title">
+  Znajdź samochód dopasowany do Ciebie
+</div>
+
 <div id="main-search">
   <form [formGroup]="searchForm" (ngSubmit)="onSubmit(searchForm.value)">
     <div class="form-row">
@@ -80,9 +88,11 @@
     </div>
 
     <div class="form-row">
-      <button mat-raised-button class="form-item" type="submit">
-        <i class="material-icons">search</i> SZUKAJ
-      </button>
+      <a [routerLink]="['/cars']">
+        <button mat-raised-button class="form-item" type="submit">
+          <i class="material-icons">search</i> SZUKAJ
+        </button>
+      </a>
     </div>
   </form>
 

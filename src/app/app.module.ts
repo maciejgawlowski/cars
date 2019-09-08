@@ -9,6 +9,8 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { MainSearchComponent } from './main-search/main-search.component';
 import {MatButtonModule, MatFormFieldModule, MatInputModule, MatSelectModule} from '@angular/material';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {CarsListComponent} from "./cars-list/cars-list.component";
+import {RouterModule} from "@angular/router";
 
 @NgModule({
   imports: [
@@ -20,12 +22,17 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     MatInputModule,
     MatFormFieldModule,
     MatSelectModule,
-    MatButtonModule
+    MatButtonModule,
+    RouterModule.forRoot([
+      { path: '', component: MainSearchComponent },
+      {path: 'cars', component: CarsListComponent}
+    ])
   ],
    declarations: [
       AppComponent,
       NavBarComponent,
-      MainSearchComponent
+      MainSearchComponent,
+      CarsListComponent
    ],
    providers: [],
    bootstrap: [
